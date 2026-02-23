@@ -16,8 +16,8 @@ Tested against the **Numenta Anomaly Benchmark (NAB)** using real-world AWS EC2 
 
 | Metric                 | Static Threshold (1.8%) | Dynamic Threshold (SmartAlert) |
 | :--------------------- | :---------------------- | :----------------------------- |
-| **Total Alarms**       | 4,032                   | 963                            |
-| **Noise Reduction**    | --                      | **76.12%**                     |
+| **Total Alarms**       | 2,809                   | 659                            |
+| **Noise Reduction**    | --                      | **76.5%**                      |
 | **System Reliability** | Unstable (High Noise)   | **Optimized (High Signal)**    |
 
 ## How it Works
@@ -27,7 +27,7 @@ The engine processes multi-variate time-series data to distinguish between "norm
 1. **Pattern Recognition:** Uses a 1-hour rolling window to calculate the moving average ($\mu$) and standard deviation ($\sigma$).
 2. **Statistical Triggering:** Instead of a fixed wall, it creates a dynamic buffer using the formula:  
    $Threshold = \mu + (k \cdot \sigma)$  
-   where $k$ is the sensitivity coefficient (tuned to **0.6** for balanced detection).
+   where $k$ is the sensitivity coefficient (tuned to **1.0** for balanced detection).
 3. **Simulation Engine:** Backtests the logic against historical data to quantify the reduction in false positives.
 
 ## Visualizing the Impact

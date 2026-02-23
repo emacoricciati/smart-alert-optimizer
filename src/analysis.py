@@ -13,11 +13,11 @@ def analyze_patterns(df):
     
     # Calculate dynamic threshold for anomaly detection
     # This is the base of statistics for finding anomalies (Z-Score)
-    df['dynamic_threshold'] = df['rolling_mean'] + (0.6 * df['rolling_std'])
+    df['dynamic_threshold'] = df['rolling_mean'] + (1 * df['rolling_std'])
     
     return df
 
-def run_simulation(df, static_threshold_value=1.8):
+def run_simulation(df, static_threshold_value=30.0):
     """
     Compare static thresholding with dynamic thresholding to evaluate the reduction in false positives.
     """
@@ -97,7 +97,7 @@ if __name__ == "__main__":
     
 
     # 3. Simulation
-    s_alerts, d_alerts, red = run_simulation(data, static_threshold_value=1.8)
+    s_alerts, d_alerts, red = run_simulation(data, static_threshold_value=40.0)
 
     # 4. Save Business Report
     save_business_report(analyzed_data, s_alerts, d_alerts, red)
